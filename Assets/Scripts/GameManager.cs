@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+        
+        if(time > 30.0f)
+        {
+            endTxt.SetActive(true);
+            time = 30.0f;
+            Time.timeScale = 0.0f;
+        }
+
         timeTxt.text = time.ToString("N2");
     }
 
