@@ -12,7 +12,11 @@ public class Board : MonoBehaviour
     {
         for(int i = 0; i < 16; i++)
         {
-            Instantiate(card, this.transform);
+            GameObject Go = Instantiate(card, this.transform);
+
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            Go.transform.position = new Vector2(x, y);
         }
     }
 
