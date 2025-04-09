@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
+    public GameObject endTxt;
+
+    public int cardCount = 0;
 
     float time = 0.0f;
 
@@ -24,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
@@ -36,6 +39,27 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
-        Debug.Log("판단하자.");
+        if(firstCard.idx == secondCard.idx)
+        {
+            //파괴해라
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();
+
+            cardCount -= 2;
+            if(cardCount == 0)
+            {
+                endTxt.SetActive(true);
+                Time.timeScale = 0.0f;                
+            }
+        }
+        else
+        {
+            //닫아라
+            firstCard.CloseCard();
+            secondCard.CloseCard();
+        }
+
+        firstCard = null;
+        secondCard = null;
     }
 }
